@@ -7,7 +7,7 @@ import 'package:oly_elazm/core/routing/named_router_impl.dart';
 import 'package:oly_elazm/oly_elazm.dart';
 
 import 'features/user_info/presentation/manager/user_info_cubit.dart';
-
+// comite
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
