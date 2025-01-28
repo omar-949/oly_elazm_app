@@ -4,7 +4,11 @@ import 'package:oly_elazm/core/di/dependency_injection.dart';
 import 'package:oly_elazm/core/widgets/app_nav_bar.dart';
 import 'package:oly_elazm/features/home/logic/home_cubit.dart';
 import 'package:oly_elazm/features/home/ui/home_view.dart';
-import 'package:oly_elazm/features/settings/presentation/views/setting_view.dart';
+
+import '../../features/quran/utils/callbacks.dart';
+import '../../features/quran/utils/globals.dart';
+import '../../features/quran/utils/helpers/custom_text.dart';
+import '../../features/quran/welcome.dart';
 
 class MainNavigator extends StatefulWidget {
   const MainNavigator({super.key});
@@ -24,7 +28,10 @@ class _MainNavigatorState extends State<MainNavigator> {
     const PlaceholderScreen(title: 'Mosque Screen'),
     const PlaceholderScreen(title: 'Book Screen'),
     const PlaceholderScreen(title: 'Pray Screen'),
-    const SettingView(),
+     const Welcome()
+
+
+    // const SettingView(),
   ];
 
   void _onItemTapped(int index) {

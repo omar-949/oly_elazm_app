@@ -37,7 +37,6 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_native_splash: ^2.4.3
   dio: ^5.7.0
-  dartz: ^0.10.1
   shared_preferences: ^2.3.3
   flutter_screenutil: ^5.9.3
   flutter_bloc: ^8.1.6
@@ -61,9 +60,18 @@ dependencies:
   adhan: ^2.0.0+1
   flutter_pannable_rating_bar: ^2.7.2+1
   country_code_picker: ^3.1.0
-  cached_network_image: ^3.4.1
+  cached_network_image:
   flutter_local_notifications: ^18.0.1
   skeletonizer: ^1.4.3
+  # for Quran
+#  hive: ^2.2.3
+  path_provider: ^2.1.5
+  quran: ^1.2.4
+  just_audio : ^0.9.43
+  flutter_animate: ^4.5.2
+  font_awesome_flutter: ^10.8.0
+  audioplayers: ^6.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -93,6 +101,7 @@ flutter:
       - assets/jsons/
       - assets/svgs/
       - assets/translations/
+      - assets/xml/quran-simple.xml
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

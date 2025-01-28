@@ -15,7 +15,7 @@ import 'package:oly_elazm/features/settings/presentation/views/elmohafez_details
 import 'package:oly_elazm/features/settings/presentation/views/setting_view.dart';
 import 'package:oly_elazm/features/user_info/presentation/views/user_info.dart';
 import '../../features/students_progress/ui/student_progress.dart';
-import '../../features/today_memorization_plan/today_memorization.dart';
+import '../../features/today_memorization_plan/ui/today_memorization.dart';
 import 'named_router.dart';
 
 class AppRouter {
