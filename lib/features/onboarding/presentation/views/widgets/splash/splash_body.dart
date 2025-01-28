@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:oly_elazm/core/helpers/app_strings.dart';
 import 'package:oly_elazm/core/helpers/extentions.dart';
+import 'package:oly_elazm/core/helpers/shared_prefrences.dart';
 import 'package:oly_elazm/core/routing/named_router.dart';
 import 'package:oly_elazm/core/theme/app_colors.dart';
 import 'quran_title.dart';
@@ -66,5 +68,11 @@ class _SplashBodyState extends State<SplashBody> {
 }
 
 void navigateToHome(final BuildContext ctx) {
-  ctx.pushNamed(Routes.mainNav);
+  if(SharedPrefHelper.getBool(AppStrings.onBoardKey)!=true) {
+    ctx.pushNamedAndRemoveUntil(Routes.onboardingScreen,predicate: (route) => false,);
+  }else if(SharedPrefHelper.getBool(AppStrings.isLoginKey)!=true) {
+    ctx.pushNamedAndRemoveUntil(Routes.loginSignUpScreen,predicate: (route) => false,);
+  }else {
+    ctx.pushNamedAndRemoveUntil(Routes.mainNav,predicate: (route) => false,);
+  }
 }

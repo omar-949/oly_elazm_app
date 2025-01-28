@@ -10,8 +10,9 @@ class UserInfoUpdated extends UserInfoState {
   final bool? isMale;
   final double percent;
   final int currentIndex;
-  final String? selectedChapter;
+  final int? selectedChapter;
   final bool notStarted;
+  final UserInfoModel? userInfoModel;
 
   UserInfoUpdated({
     this.isStudent,
@@ -20,6 +21,7 @@ class UserInfoUpdated extends UserInfoState {
     this.currentIndex = 0,
     this.selectedChapter,
     this.notStarted = false,
+    this.userInfoModel
   });
 
   UserInfoUpdated copyWith({
@@ -27,8 +29,9 @@ class UserInfoUpdated extends UserInfoState {
     bool? isMale,
     double? percent,
     int? currentIndex,
-    String? selectedChapter,
+    int? selectedChapter,
     bool? notStarted,
+    UserInfoModel? userInfoModel,
   }) {
     return UserInfoUpdated(
       isStudent: isStudent ?? this.isStudent,
@@ -37,6 +40,7 @@ class UserInfoUpdated extends UserInfoState {
       currentIndex: currentIndex ?? this.currentIndex,
       selectedChapter: selectedChapter ?? this.selectedChapter,
       notStarted: notStarted ?? this.notStarted,
+      userInfoModel: userInfoModel??this.userInfoModel
     );
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:oly_elazm/core/helpers/app_imgs.dart';
+import 'package:oly_elazm/core/helpers/app_strings.dart';
 import 'package:oly_elazm/core/helpers/extentions.dart';
+import 'package:oly_elazm/core/helpers/shared_prefrences.dart';
 import 'package:oly_elazm/core/routing/named_router.dart';
 import 'package:oly_elazm/features/onboarding/data/models/onboarding_item.dart';
 import 'package:oly_elazm/features/onboarding/presentation/views/widgets/onboarding/onboarding_overlay.dart';
@@ -79,11 +81,16 @@ class _OnboardingBodyState extends State<OnboardingBody> {
         OnboardingOverlay(
           currentPage: currentPage,
           items: items,
-          onSkip: () => context.pushReplacementNamed(Routes.userInfo),
+          onSkip: () {
+            SharedPrefHelper.setData(AppStrings.onBoardKey, true);
+
+            context.pushReplacementNamed(Routes.userInfo);
+          },
           onContinue: () {
             if (currentPage < items.length - 1) {
               _navigateToPage(currentPage + 1);
             } else {
+              SharedPrefHelper.setData(AppStrings.onBoardKey, true);
               context.pushReplacementNamed(Routes.userInfo);
             }
           },

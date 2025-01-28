@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oly_elazm/core/di/dependency_injection.dart';
 import 'package:oly_elazm/core/widgets/app_nav_bar.dart';
-import 'package:oly_elazm/features/home/feature/views/home_view.dart';
+import 'package:oly_elazm/features/home/logic/home_cubit.dart';
+import 'package:oly_elazm/features/home/ui/home_view.dart';
 import 'package:oly_elazm/features/settings/presentation/views/setting_view.dart';
 
 class MainNavigator extends StatefulWidget {
@@ -14,7 +17,10 @@ class _MainNavigatorState extends State<MainNavigator> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    const HomeView(),
+    BlocProvider(
+      create: (context) => getIt<HomeCubit>(),
+      child: HomeView(),
+    ),
     const PlaceholderScreen(title: 'Mosque Screen'),
     const PlaceholderScreen(title: 'Book Screen'),
     const PlaceholderScreen(title: 'Pray Screen'),
@@ -22,9 +28,11 @@ class _MainNavigatorState extends State<MainNavigator> {
   ];
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    if (index == 0 || index == 4) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
   }
 
   @override

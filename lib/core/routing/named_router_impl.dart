@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oly_elazm/core/di/dependency_injection.dart';
+import 'package:oly_elazm/core/routing/routing_arguments.dart';
 import 'package:oly_elazm/core/widgets/main_navigator.dart';
+import 'package:oly_elazm/features/auth/presentation/logic/auth_cubit.dart';
 import 'package:oly_elazm/features/auth/presentation/views/forget_password_view.dart';
 import 'package:oly_elazm/features/auth/presentation/views/login_sign_up_view.dart';
 import 'package:oly_elazm/features/auth/presentation/views/reset_password_view.dart';
 import 'package:oly_elazm/features/auth/presentation/views/verification_code_view.dart';
-import 'package:oly_elazm/features/home/feature/views/widgets/students_progress/student_progress.dart';
 import 'package:oly_elazm/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:oly_elazm/features/onboarding/presentation/views/splash_view.dart';
 import 'package:oly_elazm/features/settings/presentation/views/edit_profile_view.dart';
 import 'package:oly_elazm/features/settings/presentation/views/elmohafez_details_view.dart';
 import 'package:oly_elazm/features/settings/presentation/views/setting_view.dart';
 import 'package:oly_elazm/features/user_info/presentation/views/user_info.dart';
-import '../../features/home/feature/views/widgets/today_memorization_plan/today_memorization.dart';
+import '../../features/students_progress/ui/student_progress.dart';
+import '../../features/today_memorization_plan/today_memorization.dart';
 import 'named_router.dart';
 
 class AppRouter {
@@ -31,7 +35,13 @@ class AppRouter {
         );
       case Routes.loginSignUpScreen:
         return MaterialPageRoute(
-          builder: (_) => const LoginSignUpView(),
+          builder: (_) =>
+              BlocProvider(
+                create: (context) => getIt<AuthCubit>(),
+                child: LoginSignUpView(
+
+                ),
+              ),
         );
       case Routes.forgetPasswordScreen:
         return MaterialPageRoute(
@@ -39,7 +49,13 @@ class AppRouter {
         );
       case Routes.verificationCodeScreen:
         return MaterialPageRoute(
-          builder: (_) => const VerificationCodeView(),
+          builder: (_) =>
+              BlocProvider(
+                create: (context) => getIt<AuthCubit>(),
+                child: VerificationCodeView(
+                  verifyCode: settings.arguments as VerifyCodeArguments,
+                ),
+              ),
         );
       case Routes.resetPasswordScreen:
         return MaterialPageRoute(
@@ -71,11 +87,12 @@ class AppRouter {
         );
       default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(
-            body: Center(
-              child: Text('No route defined for ${settings.name}'),
-            ),
-          ),
+          builder: (_) =>
+              Scaffold(
+                body: Center(
+                  child: Text('No route defined for ${settings.name}'),
+                ),
+              ),
         );
     }
   }

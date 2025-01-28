@@ -40,11 +40,11 @@ class Selector extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 onSelectionChanged(true);
-                if (optionModel.type == SelectionType.gender) {
-                  context.read<UserInfoCubit>().updateGender(true);
-                } else if (optionModel.type == SelectionType.role) {
-                  context.read<UserInfoCubit>().updateRole(true);
-                }
+                // if (optionModel.type == SelectionType.gender) {
+                //   context.read<UserInfoCubit>().updateGender(true);
+                // } else if (optionModel.type == SelectionType.role) {
+                //   context.read<UserInfoCubit>().updateRole(true);
+                // }
               },
               child: UserInfoItem(
                 image: optionModel.image1,
@@ -56,11 +56,11 @@ class Selector extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 onSelectionChanged(false);
-                if (optionModel.type == SelectionType.gender) {
-                  context.read<UserInfoCubit>().updateGender(false);
-                } else if (optionModel.type == SelectionType.role) {
-                  context.read<UserInfoCubit>().updateRole(false);
-                }
+                // if (optionModel.type == SelectionType.gender) {
+                //   context.read<UserInfoCubit>().updateGender(false);
+                // } else if (optionModel.type == SelectionType.role) {
+                //   context.read<UserInfoCubit>().updateRole(false);
+                // }
               },
               child: UserInfoItem(
                 image: optionModel.image2,

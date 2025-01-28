@@ -60,6 +60,10 @@ dependencies:
   intl: ^0.19.0
   adhan: ^2.0.0+1
   flutter_pannable_rating_bar: ^2.7.2+1
+  country_code_picker: ^3.1.0
+  cached_network_image: ^3.4.1
+  flutter_local_notifications: ^18.0.1
+  skeletonizer: ^1.4.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -86,6 +90,7 @@ flutter:
   assets:
       - assets/
       - assets/images/
+      - assets/jsons/
       - assets/svgs/
       - assets/translations/
 

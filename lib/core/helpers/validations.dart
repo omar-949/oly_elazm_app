@@ -75,4 +75,13 @@ class Validations {
     }
     return null;
   }
+  static String? ageValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'العمر مطلوب.';
+    }
+    if (value.length < 1) {
+      return 'يرجى إدخال عمر صالح.';
+    }
+    return null;
+  }
 }

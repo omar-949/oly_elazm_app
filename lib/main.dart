@@ -3,15 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart'; // Import for Bloc
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:oly_elazm/core/helpers/shared_prefrences.dart';
 import 'package:oly_elazm/core/routing/named_router_impl.dart';
+import 'package:oly_elazm/features/notification/helper/local_notification_service.dart';
 import 'package:oly_elazm/oly_elazm.dart';
 
+import 'core/di/dependency_injection.dart';
 import 'features/user_info/presentation/manager/user_info_cubit.dart';
-// comite
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized();
-  await ScreenUtil.ensureScreenSize();
+  await SharedPrefHelper.init();
+  await Future.wait<void>([
+    LocalNotificationService.init(),
+    EasyLocalization.ensureInitialized(),
+    ScreenUtil.ensureScreenSize(),
+    setupGetIt(),
+  ]);
   SystemUIConfig.configure();
 
   runApp(
