@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oly_elazm/core/theme/app_colors.dart';
+import 'package:oly_elazm/core/widgets/app_text.dart';
 
 import 'content.dart';
 import 'daily_content_header.dart';
 
 
 class DailyContent extends StatelessWidget {
-  const DailyContent({super.key, required this.title, required this.content});
+  const DailyContent({super.key, required this.title, required this.content, this.surahName});
 
   final String title;
   final String content;
+  final String? surahName;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +35,7 @@ class DailyContent extends StatelessWidget {
         children: [
           DailyContentHeader(
             title: title,
+            surahName: surahName,
           ),
           Divider(
             color: AppColors.secondaryAppColor,

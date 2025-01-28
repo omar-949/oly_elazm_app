@@ -1,38 +1,38 @@
 
 
-import 'package:oly_elazm/features/home/data/models/teacher/all_student_model.dart';
+import 'package:oly_elazm/features/students_progress/data/models/teacher/student_details.dart';
 
 import '../../../../core/helpers/operation_state.dart';
 
 /// Represents the entire authentication state.
 class StudentProgressState {
-  final OperationState allStudentsState;
-  final AllStudentModel? allStudents;
-  final OperationState registerState;
-  final OperationState verifyCodeState ;
+  final OperationState studentsDetailsState;
+  final StudentDetailsModel? studentsDetailsData;
+  final OperationState giveTaskState;
+  final OperationState addReviewState ;
   final int? verifyCode ;
 
   const StudentProgressState({
-    this.allStudentsState = const OperationState(),
-    this.allStudents,
-    this.registerState = const OperationState(),
-    this.verifyCodeState = const OperationState(),
+    this.studentsDetailsState = const OperationState(),
+    this.studentsDetailsData,
+    this.giveTaskState = const OperationState(),
+    this.addReviewState = const OperationState(),
     this.verifyCode,
   });
 
   /// Returns a new instance of [StudentProgressState] with updated values.
   StudentProgressState copyWith({
-    OperationState? allStudentsState,
-    AllStudentModel? allStudents,
-    OperationState? registerState,
-    OperationState? verifyCodeState,
+    OperationState? studentsDetailsState,
+    StudentDetailsModel? studentsDetailsData,
+    OperationState? giveTaskState,
+    OperationState? addReviewState,
     int? verifyCode
   }) {
     return StudentProgressState(
-      allStudentsState: allStudentsState ?? this.allStudentsState,
-      allStudents: allStudents ?? this.allStudents,
-      registerState: registerState ?? this.registerState,
-      verifyCodeState: verifyCodeState ?? this.verifyCodeState,
+      studentsDetailsState: studentsDetailsState ?? this.studentsDetailsState,
+      studentsDetailsData: studentsDetailsData ?? this.studentsDetailsData,
+      giveTaskState: giveTaskState ?? this.giveTaskState,
+      addReviewState: addReviewState ?? this.addReviewState,
       verifyCode: verifyCode ?? this.verifyCode
     );
   }

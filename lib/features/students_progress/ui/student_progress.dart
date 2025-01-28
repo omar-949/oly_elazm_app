@@ -9,9 +9,10 @@ class StudentProgress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'المُحفظ',),
+      appBar: CustomAppBar(
+        title: 'المُحفظ',
+      ),
       body: StudentProgressBody(),
     );
   }
 }
-

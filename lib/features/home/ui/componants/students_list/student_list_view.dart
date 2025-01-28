@@ -36,7 +36,7 @@ class StudentListView extends StatelessWidget {
                     bottom: 12.h,
                   ),
                   child: GestureDetector(
-                    onTap: () => context.pushNamed(Routes.studentProgress),
+                    onTap: () => context.pushNamed(Routes.studentProgress,arguments: state.allStudents?.data?[index].id),
                     child: StudentListItem(student: state.allStudents?.data?[index]??DataAllStudents(),),
                   ),
                 );

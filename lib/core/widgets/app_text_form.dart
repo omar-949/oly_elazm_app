@@ -146,6 +146,7 @@ class AppTextField extends StatelessWidget {
       enabled: isClickable ?? true,
       focusNode: focusNode,
       onTap: onTap,
+      readOnly:onTap == null ? false : true,
       onFieldSubmitted: onFieldSubmitted,
       onChanged: onChanged,
       maxLines: isPassword == true ? 1 : maxLine,

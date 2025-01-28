@@ -22,7 +22,7 @@ class CustomizedText extends StatelessWidget {
       softWrap: true,
       style: TextStyle(
           color: color,
-          fontFamily: fontFamily,
+          fontFamily:  GoogleFonts.amiriQuran().fontFamily,
           fontSize: fontSize,
-          fontWeight: GoogleFonts.notoNaskhArabic().fontWeight));
+          fontWeight: fontWeight));
 }

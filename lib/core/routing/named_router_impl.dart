@@ -13,6 +13,8 @@ import 'package:oly_elazm/features/onboarding/presentation/views/splash_view.dar
 import 'package:oly_elazm/features/settings/presentation/views/edit_profile_view.dart';
 import 'package:oly_elazm/features/settings/presentation/views/elmohafez_details_view.dart';
 import 'package:oly_elazm/features/settings/presentation/views/setting_view.dart';
+import 'package:oly_elazm/features/students_progress/data/repo/student_progress_repo.dart';
+import 'package:oly_elazm/features/students_progress/logic/student_progress_cubit.dart';
 import 'package:oly_elazm/features/user_info/presentation/views/user_info.dart';
 import '../../features/students_progress/ui/student_progress.dart';
 import '../../features/today_memorization_plan/ui/today_memorization.dart';
@@ -67,7 +69,11 @@ class AppRouter {
         );
       case Routes.studentProgress:
         return MaterialPageRoute(
-          builder: (_) => const StudentProgress(),
+          builder: (_) =>
+              BlocProvider(
+                create: (context) => getIt<StudentProgressCubit>()..init( settings.arguments as int),
+                child: const StudentProgress(),
+              ),
         );
       case Routes.todayMemorization:
         return MaterialPageRoute(

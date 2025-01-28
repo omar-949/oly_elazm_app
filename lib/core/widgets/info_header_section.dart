@@ -21,7 +21,6 @@ class InfoHeaderSection extends StatelessWidget {
     return Column(
       children: [
         CurvedBackgroundWithImage(
-          imagePath: imagePath,
         ),
         SizedBox(height: 15.h),
         Text(

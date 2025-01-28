@@ -32,7 +32,8 @@ class AuthCubit extends Cubit<AuthState> {
       },
       success: (r) {
         SharedPrefHelper.setData(AppStrings.userRoleKey, r["role"]);
-        // SharedPrefHelper.setData(AppStrings.isLoginKey, true);
+        SharedPrefHelper.setData(AppStrings.userId, r["data"]["id"]);
+        SharedPrefHelper.setData(AppStrings.isLoginKey, true);
         SharedPrefHelper.setSecuredString(AppStrings.userTokenKey, r["token"]);
         emit(state.copyWith(loginState: OperationState.success()));
       },

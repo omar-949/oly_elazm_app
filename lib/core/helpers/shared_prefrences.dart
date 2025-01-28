@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:oly_elazm/features/praying/data/praying_model/timings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefHelper {
@@ -80,6 +81,30 @@ class SharedPrefHelper {
   static getSecuredString(String key)  {
    final secureString= _sharedPreferences?.getString(key) ?? '';
    return utf8.decode(base64.decode(secureString));
+  }
+  /// Save any object to SharedPreferences
+  static Future<void> setDataObject<T>({required String key,required T value}) async {
+    log("SharedPrefHelper : setDataObject with key : $key and value : $value");
+
+    String jsonString = json.encode(value is Timings ? value.toJson() : value);
+    await _sharedPreferences?.setString(key, jsonString);
+  }
+
+  /// Retrieve any object from SharedPreferences
+  static T? getDataObject<T>(
+      {required String key,required T Function(Map<String, dynamic>) fromJson}) {
+    log('SharedPrefHelper : getDataObject with key : $key');
+    String? jsonString = _sharedPreferences?.getString(key);
+
+    if (jsonString == null || jsonString.isEmpty) return null;
+
+    try {
+      Map<String, dynamic> jsonMap = json.decode(jsonString);
+      return fromJson(jsonMap);
+    } catch (e) {
+      log('SharedPrefHelper : Error decoding JSON - $e');
+      return null;
+    }
   }
 
 }

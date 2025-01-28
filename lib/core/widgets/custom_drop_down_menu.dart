@@ -58,7 +58,7 @@ class CustomDropDownMenu<T> extends StatelessWidget {
             child: DropdownButtonFormField<T>(
               value: initialValue, // Set initial value here
               validator: isValidate == true
-                  ? (value) => value == null ? 'Select item required' : null
+                  ? (value) => value == null ? 'يرجى التحديد' : null
                   : null,
               icon: Icon(
                 Icons.keyboard_arrow_up_rounded,

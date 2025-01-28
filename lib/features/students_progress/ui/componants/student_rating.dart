@@ -4,8 +4,8 @@ import 'package:oly_elazm/core/theme/app_colors.dart';
 import 'package:oly_elazm/core/theme/app_text_style.dart';
 
 class StudentRating extends StatefulWidget {
-  const StudentRating({super.key});
-
+  const StudentRating({super.key, required this.onRatingChanged});
+final void Function(double rating) onRatingChanged;
   @override
   State<StudentRating> createState() => _StudentRatingState();
 }
@@ -38,6 +38,7 @@ class _StudentRatingState extends State<StudentRating> {
             setState(
               () {
                 rating = value;
+                widget.onRatingChanged(rating);
               },
             );
           },

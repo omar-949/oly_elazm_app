@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oly_elazm/core/helpers/app_strings.dart';
 import 'package:oly_elazm/core/helpers/shared_prefrences.dart';
 import 'package:oly_elazm/features/home/ui/componants/stepper/home_stepper.dart';
 import 'package:oly_elazm/features/home/ui/componants/students_list/student_section.dart';
+import 'package:quran/quran.dart' as quran;
 
 import 'continue_memorization/quran_continue_body.dart';
 import 'daily_content/daily_content.dart';
@@ -14,6 +17,8 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int surah = Random().nextInt(114)+1 ;
+    int verse= Random().nextInt(quran.getVerseCount(surah))+1;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -34,7 +39,8 @@ class HomeBody extends StatelessWidget {
           DailyContent(
             title: '۞ آية اليوم',
             content:
-                ' أَلَمۡ یَأۡنِ لِلَّذِینَ ءَامَنُوۤا۟ أَن تَخۡشَعَ قُلُوبُهُمۡ لِذِكۡرِ ٱللَّهِ وَمَا نَزَلَ مِنَ ٱلۡحَقِّ وَلَا یَكُونُوا۟ كَٱلَّذِینَ أُوتُوا۟ ٱلۡكِتَـٰبَ مِن قَبۡلُ فَطَالَ عَلَیۡهِمُ ٱلۡأَمَدُ فَقَسَتۡ قُلُوبُهُمۡۖ وَكَثِیرࣱ مِّنۡهُمۡ فَـٰسِقُونَ﴾',
+                "﴿ ${quran.getVerse(surah, verse)} ﴾",
+            surahName:"سورة ${quran.getSurahNameArabic(surah)} الآيه $verse",
           ),
           DailyContent(
             title: '۞ حديث اليوم',

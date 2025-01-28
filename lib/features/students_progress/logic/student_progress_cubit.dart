@@ -1,62 +1,85 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:oly_elazm/core/helpers/app_strings.dart';
-import 'package:oly_elazm/core/helpers/shared_prefrences.dart';
 import 'package:oly_elazm/features/students_progress/data/repo/student_progress_repo.dart';
 
 import '../../../../core/helpers/operation_state.dart';
-import '../../../../core/routing/routing_arguments.dart';
-import '../../auth/presentation/data/models/send_models/register_send_model.dart';
 import 'student_progress_state.dart';
+import 'package:quran/quran.dart' as quran;
 
 class StudentProgressCubit extends Cubit<StudentProgressState> {
-  StudentProgressCubit(this._studentProgressRepo) : super(const StudentProgressState()){
-    if(SharedPrefHelper.getString(AppStrings.userRoleKey) == "student"){
-
-    }else{
-      fetchAllStudents();
-    }
-  }
+  StudentProgressCubit(this._studentProgressRepo)
+      : super(const StudentProgressState());
   final StudentProgressRepo _studentProgressRepo;
+  late int id;
+
+  void init(int id) {
+    this.id = id;
+    fetchAllStudents(id);
+  }
 
   /// fetchAllStudents
-  Future<void> fetchAllStudents() async {
-    emit(state.copyWith(allStudentsState: OperationState.loading()));
-    final result = await _studentProgressRepo.fetchAllStudents();
+  Future<void> fetchAllStudents(int id) async {
+    emit(state.copyWith(studentsDetailsState: OperationState.loading()));
+    final result = await _studentProgressRepo.fetchStudentsDetails(id);
     result.when(
       failure: (l) {
-        emit(state.copyWith(allStudentsState: OperationState.error()));
+        emit(state.copyWith(studentsDetailsState: OperationState.error()));
       },
       success: (r) {
-
-        emit(state.copyWith(allStudentsState: OperationState.success(),allStudents: r));
+        emit(state.copyWith(
+            studentsDetailsState: OperationState.success(),
+            studentsDetailsData: r));
       },
     );
   }
 
-  /// register
-  Future<void> register({required RegisterSendModel registerSendModel}) async {
-    emit(state.copyWith(registerState: OperationState.loading()));
-    // final result =
-    //     await _authRepo.register(registerSendModel: registerSendModel);
-    // result.when(
-    //   failure: (l) =>
-    //       emit(state.copyWith(registerState: OperationState.error())),
-    //   success: (r) => emit(state.copyWith(
-    //       registerState: OperationState.success(), verifyCode: r)),
-    // );
+  /// giveTask
+  String? surahName;
+  int ? from, to;
+  void changeGiveTaskData({String? surahName, int? from, int? to}) {
+    emit(state.copyWith(studentsDetailsState: OperationState.loading()));
+    this.surahName = surahName??this.surahName;
+    this.from = from??this.from;
+    this.to = to??this.to;
+    emit(state.copyWith(studentsDetailsState: OperationState.success()));
   }
+  Future<void> giveTask(
+      {
 
-  /// verify
-  Future<void> verify(
-      {required VerifyCodeArguments verifyCodeArguments}) async {
-    emit(state.copyWith(verifyCodeState: OperationState.loading()));
-    // final result =
-    //     await _authRepo.verify(verifyCodeArguments: verifyCodeArguments);
-    // result.when(
-    //   failure: (l) =>
-    //       emit(state.copyWith(verifyCodeState: OperationState.error())),
-    //   success: (r) =>
-    //       emit(state.copyWith(verifyCodeState: OperationState.success())),
-    // );
+      required String time,
+      required String meetingLink}) async {
+    emit(state.copyWith(giveTaskState: OperationState.loading()));
+    final result = await _studentProgressRepo.giveTask(
+        id: id,
+        surah: surahName!,
+        from: from!,
+        to: to!,
+        time: time,
+        meetingLink: meetingLink);
+    result.when(
+      failure: (l) =>
+          emit(state.copyWith(giveTaskState: OperationState.error())),
+      success: (r) =>
+          emit(state.copyWith(giveTaskState: OperationState.success())),
+    );
+  }
+final suras=List.generate(
+  114, (index) => quran.getSurahNameArabic(index + 1),);
+  /// addReview
+  Future<void> addReview(
+      {required String comment,
+      required double rating}) async {
+    emit(state.copyWith(addReviewState: OperationState.loading()));
+    final result = await _studentProgressRepo.addReview(
+      id: id,
+      comment: comment,
+      partsNum:quran.getJuzNumber(suras.indexOf(surahName!), from!).toString(),
+      rating: rating,
+    );
+    result.when(
+      failure: (l) =>
+          emit(state.copyWith(addReviewState: OperationState.error())),
+      success: (r) =>
+          emit(state.copyWith(addReviewState: OperationState.success())),
+    );
   }
 }

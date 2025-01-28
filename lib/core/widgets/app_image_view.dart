@@ -86,20 +86,9 @@ class AppImageView extends StatelessWidget {
   }
 
   Widget _errorPlaceholder() {
-    return Container(
-      height: height,
-      width: width,
-      decoration: BoxDecoration(
-        shape: isCircular ? BoxShape.circle : BoxShape.rectangle,
-        color: AppColors.textColor,
-        borderRadius: isCircular ? null : borderRadius,
-      ),
-      child: const Center(
-        child: AppText(
-          text: "Image not found",
-          textWeight: FontWeight.bold,
-        ),
-      ),
+    return Image.network(
+      "https://i.pinimg.com/736x/2c/f5/58/2cf558ab8c1f12b43f7326945672805e.jpg",
+      fit: BoxFit.cover,
     );
   }
 }

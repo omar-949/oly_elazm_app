@@ -1,45 +1,48 @@
-class AllStudentModel {
+class StudentDetailsModel {
   String? message;
   int? status;
-  List<DataAllStudents>? data;
+  DataStudentDetails? data;
 
-  AllStudentModel({
+  StudentDetailsModel({
     this.message,
     this.status,
     this.data,
   });
 
-  factory AllStudentModel.fromJson(Map<String, dynamic> json) => AllStudentModel(
+  factory StudentDetailsModel.fromJson(Map<String, dynamic> json) => StudentDetailsModel(
     message: json["message"],
     status: json["status"],
-    data: json["data"] == null ? [] : List<DataAllStudents>.from(json["data"]!.map((x) => DataAllStudents.fromJson(x))),
+    data: json["data"] == null ? null : DataStudentDetails.fromJson(json["data"]),
   );
 
   Map<String, dynamic> toJson() => {
     "message": message,
     "status": status,
-    "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
+    "data": data?.toJson(),
   };
 }
 
-class DataAllStudents {
+class DataStudentDetails {
   int? id;
   String? profilePicture;
+  String? role;
   String? name;
   int? totalPoints;
   String? quranPartsMemorized;
 
-  DataAllStudents({
+  DataStudentDetails({
     this.id,
     this.profilePicture,
+    this.role,
     this.name,
     this.totalPoints,
     this.quranPartsMemorized,
   });
 
-  factory DataAllStudents.fromJson(Map<String, dynamic> json) => DataAllStudents(
+  factory DataStudentDetails.fromJson(Map<String, dynamic> json) => DataStudentDetails(
     id: json["id"],
     profilePicture: json["profile_picture"],
+    role: json["role"],
     name: json["name"],
     totalPoints: json["total_points"],
     quranPartsMemorized: json["quran_parts_memorized"],
@@ -48,6 +51,7 @@ class DataAllStudents {
   Map<String, dynamic> toJson() => {
     "id": id,
     "profile_picture": profilePicture,
+    "role": role,
     "name": name,
     "total_points": totalPoints,
     "quran_parts_memorized": quranPartsMemorized,
