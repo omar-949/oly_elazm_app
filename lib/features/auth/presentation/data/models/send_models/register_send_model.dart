@@ -10,6 +10,7 @@ class RegisterSendModel {
   final String job;
   final int age;
   final int? quranPartsMemorized;
+  final int? yearsOfExperience;
 
   RegisterSendModel({
     required this.name,
@@ -23,5 +24,6 @@ class RegisterSendModel {
     required this.job,
     required this.age,
      this.quranPartsMemorized,
+    this.yearsOfExperience,
   });
 }

@@ -69,17 +69,17 @@ class _LoginFormState extends State<LoginForm> {
             validator: Validations.passwordValidator,
             autoValidateMode: autoValidateMode,
           ),
-          6.verticalSpace,
-          GestureDetector(
-            onTap: () {
-              context.pushNamed(Routes.forgetPasswordScreen);
-            },
-            child: Text(
-              'نسيت كلمة المرور؟',
-              style: AppTextStyle.font16Regular(
-                  color: AppColors.secondaryAppColor),
-            ),
-          ),
+          60.verticalSpace,
+          // GestureDetector(
+          //   onTap: () {
+          //     context.pushNamed(Routes.forgetPasswordScreen);
+          //   },
+          //   child: Text(
+          //     'نسيت كلمة المرور؟',
+          //     style: AppTextStyle.font16Regular(
+          //         color: AppColors.secondaryAppColor),
+          //   ),
+          // ),
           Center(
             child: BlocConsumer<AuthCubit, AuthState>(
               listener: (context, state) {

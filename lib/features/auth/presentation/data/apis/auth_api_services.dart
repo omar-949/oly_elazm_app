@@ -42,7 +42,8 @@ class AuthApiServices implements AuthRepo {
         "gender": registerSendModel.gender,
         "language": "ar",
         "age": "${registerSendModel.age}",
-        "quran_parts_memorized": "${registerSendModel.quranPartsMemorized}"
+        "quran_parts_memorized": "${registerSendModel.quranPartsMemorized}",
+        "years_of_experience": "${registerSendModel.yearsOfExperience}",
       },
       fromJson: (p0) => p0["otp_number"] as T,
     );

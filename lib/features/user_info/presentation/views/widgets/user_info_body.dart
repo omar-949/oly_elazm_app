@@ -14,6 +14,7 @@ import 'package:oly_elazm/features/user_info/presentation/views/widgets/chapters
 import 'package:oly_elazm/features/user_info/presentation/views/widgets/country_and_lang.dart';
 import 'package:oly_elazm/features/user_info/presentation/views/widgets/percent_bar.dart';
 import 'package:oly_elazm/features/user_info/presentation/views/widgets/selector.dart';
+import 'package:oly_elazm/features/user_info/presentation/views/widgets/tajwed_level.dart';
 
 class UserInfoBody extends StatelessWidget {
   const UserInfoBody({super.key, required this.pageController});
@@ -36,8 +37,8 @@ class UserInfoBody extends StatelessWidget {
               type: SelectionType.role,
               option1: 'طالب',
               option2: 'محفظ',
-              image1: 'assets/images/male.png',
-              image2: 'assets/images/female.png',
+              image1: 'assets/images/student.png',
+              image2: 'assets/images/teacher.png',
             ),
             onSelectionChanged: (value) {
               context.read<UserInfoCubit>().updateRole(value);
@@ -66,7 +67,7 @@ class UserInfoBody extends StatelessWidget {
 
             },
           ),
-          if (userInfoState.isStudent == true) const Chapters(),
+           (userInfoState.isStudent == true)? const Chapters():const TajweedLevelApp(),
         ];
 
         bool isJobSelected() => userInfoState.userInfoModel?.job != null;
@@ -75,6 +76,8 @@ class UserInfoBody extends StatelessWidget {
         bool isGenderSelected() => userInfoState.userInfoModel?.gender != null;
         bool isPartNumberSelected() =>
             userInfoState.userInfoModel?.partNumber != null;
+        bool isYearsOfExperienceSelected() =>
+            userInfoState.userInfoModel?.yearsOfExperience != null;
         bool isLastPage() => userInfoState.currentIndex >= widgets.length - 1;
 
         void showErrorToast(String message) {
@@ -91,7 +94,7 @@ class UserInfoBody extends StatelessWidget {
           } else if (userInfoState.currentIndex == 0 ||
               userInfoState.currentIndex < 3 &&
                   userInfoState.isStudent == true ||
-              (userInfoState.currentIndex < 2 &&
+              (userInfoState.currentIndex < 3 &&
                   userInfoState.isStudent == false)) {
             pageController.nextPage(
               duration: const Duration(milliseconds: 300),
@@ -100,7 +103,11 @@ class UserInfoBody extends StatelessWidget {
           } else if (!isPartNumberSelected() &&
               userInfoState.isStudent == true) {
             showErrorToast("يجب تحديد عدد اجزاء الحفظ");
-          } else if (isLastPage()) {
+          }else if (!isYearsOfExperienceSelected() &&
+              userInfoState.isStudent == false) {
+            showErrorToast("يجب تحديد مستوي التجويد");
+          }
+          else if (isLastPage()) {
             context.pushNamed(Routes.loginSignUpScreen,);
           }
         }

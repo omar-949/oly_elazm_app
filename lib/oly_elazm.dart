@@ -23,7 +23,7 @@ class OlyElazm extends StatelessWidget {
           locale: context.locale,
           themeAnimationDuration: const Duration(milliseconds: 700),
           themeAnimationCurve: Curves.easeInOutCubic,
-          initialRoute: Routes.mainNav,
+          initialRoute: Routes.splashScreen,
           onGenerateRoute: appRouter.generateRoute,
           debugShowCheckedModeBanner: false,
           title: 'Oly Elazm',

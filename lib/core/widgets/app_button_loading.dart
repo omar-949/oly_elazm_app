@@ -10,13 +10,14 @@ import 'app_text.dart';
 
 class AppButtonLoading extends StatelessWidget {
   final String title;
-
-  const AppButtonLoading({super.key, required this.title});
+  final double? width;
+  const AppButtonLoading({super.key, required this.title, this.width});
 
   @override
   Widget build(BuildContext context) {
     return AppButton(
       height: AppSize.h48,
+      width:width,
       background: AppColors.mainAppColor.withOpacity(0.4),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

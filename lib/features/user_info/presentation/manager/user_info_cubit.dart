@@ -35,6 +35,7 @@ class UserInfoCubit extends Cubit<UserInfoState> {
     String? gender,
     String? userType,
     int? partNumber,
+    int? yearsOfExperience
   }) {
     final currentState = state;
 
@@ -47,6 +48,7 @@ class UserInfoCubit extends Cubit<UserInfoState> {
           gender: gender,
           userType: userType,
           partNumber: partNumber,
+              yearsOfExperience: yearsOfExperience
         )),
       );
     }
@@ -69,15 +71,15 @@ class UserInfoCubit extends Cubit<UserInfoState> {
   // Calculate percent dynamically based on role and current step
   double percentCalculator(bool? isStudent, bool? isMale,
       int? selectedChapter, int currentIndex) {
-    // Handle edge cases when role is not yet selected
     if (isStudent == null) return 0.0;
 
-    // Determine the total steps based on the role
-    final totalSteps = isStudent ? 3 : 2; // 3 steps for Student, 2 for Mohafez
+    // Unified total steps for both roles
+    final totalSteps = 3;
 
     // Calculate percentage including the current index
     return (currentIndex / totalSteps).clamp(0.0, 1.0);
   }
+
 
   // Update the current index of the PageView and adjust the percentage
   void updateCurrentIndex(int index) {
@@ -129,7 +131,7 @@ class UserInfoCubit extends Cubit<UserInfoState> {
             0,
             currentState.currentIndex);
       } else {
-        updatedPercent=3/3;
+        updatedPercent = 3 / 3; // Full completion percent when deselected
       }
       emit(
         currentState.copyWith(
@@ -137,8 +139,8 @@ class UserInfoCubit extends Cubit<UserInfoState> {
           notStarted: isChecked,
           percent: updatedPercent,
           userInfoModel: currentState.userInfoModel!.copyWith(
-            partNumber: isChecked ? 0 : null),
-
+            partNumber: isChecked ? 0 : null,
+          ),
         ),
       );
     }

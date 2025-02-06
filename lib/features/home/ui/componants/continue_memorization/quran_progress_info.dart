@@ -6,9 +6,8 @@ import 'package:oly_elazm/core/theme/app_colors.dart';
 
 class QuranProgressInfo extends StatelessWidget {
   final String name;
-  final String num;
 
-  const QuranProgressInfo({super.key, required this.name, required this.num});
+  const QuranProgressInfo({super.key, required this.name, });
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +18,12 @@ class QuranProgressInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'متابعة القرآن من حيث توقفت',
+            'الحفظ اليومي',
             style: AppTextStyle.font16Regular(color: Colors.white),
           ),
           5.ph,
-          _buildRow('توقفت عند سورة ', name),
+          _buildRow('مطلوب الحفظ: سورة ', name),
           5.ph,
-          _buildRow('صفحة ', num),
         ],
       ),
     );

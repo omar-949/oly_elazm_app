@@ -24,16 +24,26 @@ class UserInfoItem extends StatelessWidget {
           width: 130.w,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: isSelected ? AppColors.secondaryAppColor : Colors.transparent,
             border: Border.all(
               color: isSelected ? AppColors.secondaryAppColor : Colors.transparent,
               width: 3.0, // Adjust border width
             ),
           ),
-          child: Image.asset(
-            image,
+          child: Container(
             height: 120.h,
             width: 120.w,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: isSelected ? AppColors.secondaryAppColor : Colors.transparent,
+                width: 3.0, // Adjust border width
+              ),
+            ),
+            child: Image.asset(
+              image,
+              height: 120.h,
+              width: 120.w,
+            ),
           ),
         ),
         8.verticalSpace,

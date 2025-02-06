@@ -11,9 +11,9 @@ class Validations {
     if (value.length > 40) {
       return "لا يمكن أن يتجاوز اسم المستخدم 40 حرفًا.";
     }
-    if (!AppRegex.isUsernameValid(value)) {
-      return "يرجى إدخال اسم مستخدم صالح.";
-    }
+    // if (!AppRegex.isUsernameValid(value)) {
+    //   return "يرجى إدخال اسم مستخدم صالح.";
+    // }
     return null;
   }
 
@@ -21,9 +21,9 @@ class Validations {
     if (value == null || value.isEmpty) {
       return 'البريد الإلكتروني مطلوب.';
     }
-    if (!AppRegex.isEmailValid(value)) {
-      return 'يرجى إدخال بريد إلكتروني صالح.';
-    }
+    // if (!AppRegex.isEmailValid(value)) {
+    //   return 'يرجى إدخال بريد إلكتروني صالح.';
+    // }
     return null;
   }
 
@@ -44,15 +44,15 @@ class Validations {
     if (value.length < 8) {
       return 'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل.';
     }
-    if (!AppRegex.hasUpperCase(value)) {
-      return 'يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل.';
-    }
-    if (!AppRegex.hasLowerCase(value)) {
-      return 'يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل.';
-    }
-    if (!AppRegex.hasNumber(value)) {
-      return 'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل.';
-    }
+    // if (!AppRegex.hasUpperCase(value)) {
+    //   return 'يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل.';
+    // }
+    // if (!AppRegex.hasLowerCase(value)) {
+    //   return 'يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل.';
+    // }
+    // if (!AppRegex.hasNumber(value)) {
+    //   return 'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل.';
+    // }
     return null;
   }
 

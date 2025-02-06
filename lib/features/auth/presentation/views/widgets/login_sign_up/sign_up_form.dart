@@ -154,6 +154,7 @@ class _SignUpFormState extends State<SignUpForm> {
                                               stateUser.userInfoModel!.gender!,
                                           role: stateUser
                                               .userInfoModel!.userType!,
+                                                  yearsOfExperience: stateUser.userInfoModel!.yearsOfExperience!,
                                         ));
                                   }
                                 } else if (autoValidateMode !=

@@ -5,7 +5,7 @@ import 'package:oly_elazm/features/quran/utils/globals.dart';
 import 'package:oly_elazm/features/quran/utils/helpers/custom_play_pause.dart';
 import 'package:quran/quran.dart' as quran;
 
-import 'utils/helpers/custom_icon_button.dart';
+import '../auth/presentation/views/widgets/app_back_button.dart';
 import 'utils/helpers/custom_text.dart';
 
 class Surah extends StatefulWidget {
@@ -28,10 +28,7 @@ class _SurahState extends State<Surah> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: CustomizedIconButton(
-            func: () => Navigator.pop(context),
-            icon: FontAwesomeIcons.chevronLeft,
-            color: purple),
+        leading: const AppBackButton(),
         title: CustomizedText(
             color: AppColors.mainAppColor,
             text: quran.getSurahNameArabic(widget.surah),
