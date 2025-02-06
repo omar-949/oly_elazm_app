@@ -7,13 +7,14 @@ class AppTextStyle {
     required double textSize,
     required Color textColor,
     required FontWeight textWeight,
+    String? fontFamily,
     TextDecoration decoration = TextDecoration.none,
   }) {
     return TextStyle(
       fontSize: textSize,
       color: textColor,
       fontWeight: textWeight,
-      fontFamily: 'ElMessiri', // Add the font family here
+      fontFamily: fontFamily ?? 'ElMessiri', // Add the font family here
       decoration: decoration,
     );
   }

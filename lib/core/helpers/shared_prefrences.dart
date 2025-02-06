@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:oly_elazm/features/praying/data/praying_model/timings.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefHelper {
-  static  SharedPreferences? _sharedPreferences;
+  static SharedPreferences? _sharedPreferences;
+
   // private constructor as I don't want to allow creating an instance of this class itself.
   SharedPrefHelper._();
+
   // initialization of the SharedPrefHelper
   static Future<void> init() async {
-     _sharedPreferences = await SharedPreferences.getInstance();
+    _sharedPreferences = await SharedPreferences.getInstance();
   }
+
   /// Removes a value from SharedPreferences with given [key].
   static removeData(String key) async {
     log('SharedPrefHelper : data with key : $key has been removed');
@@ -45,25 +48,25 @@ class SharedPrefHelper {
   }
 
   /// Gets a bool value from SharedPreferences with given [key].
-  static getBool(String key)  {
+  static getBool(String key) {
     log('SharedPrefHelper : getBool with key : $key');
     return _sharedPreferences?.getBool(key) ?? false;
   }
 
   /// Gets a double value from SharedPreferences with given [key].
-  static getDouble(String key)  {
+  static getDouble(String key) {
     log('SharedPrefHelper : getDouble with key : $key');
     return _sharedPreferences?.getDouble(key) ?? 0.0;
   }
 
   /// Gets an int value from SharedPreferences with given [key].
-  static getInt(String key)  {
+  static getInt(String key) {
     log('SharedPrefHelper : getInt with key : $key');
     return _sharedPreferences?.getInt(key) ?? 0;
   }
 
   /// Gets an String value from SharedPreferences with given [key].
-  static String getString(String key)  {
+  static String getString(String key) {
     log('SharedPrefHelper : getString with key : $key');
     return _sharedPreferences?.getString(key) ?? '';
   }
@@ -78,21 +81,24 @@ class SharedPrefHelper {
   }
 
   /// Gets an String value from FlutterSecureStorage with given [key].
-  static getSecuredString(String key)  {
-   final secureString= _sharedPreferences?.getString(key) ?? '';
-   return utf8.decode(base64.decode(secureString));
+  static getSecuredString(String key) {
+    final secureString = _sharedPreferences?.getString(key) ?? '';
+    return utf8.decode(base64.decode(secureString));
   }
+
   /// Save any object to SharedPreferences
-  static Future<void> setDataObject<T>({required String key,required T value}) async {
+  static Future<void> setDataObject<T>(
+      {required String key, required T value}) async {
     log("SharedPrefHelper : setDataObject with key : $key and value : $value");
 
-    String jsonString = json.encode(value is Timings ? value.toJson() : value);
+    String jsonString = json.encode(value);
     await _sharedPreferences?.setString(key, jsonString);
   }
 
   /// Retrieve any object from SharedPreferences
   static T? getDataObject<T>(
-      {required String key,required T Function(Map<String, dynamic>) fromJson}) {
+      {required String key,
+      required T Function(Map<String, dynamic>) fromJson}) {
     log('SharedPrefHelper : getDataObject with key : $key');
     String? jsonString = _sharedPreferences?.getString(key);
 
@@ -106,5 +112,4 @@ class SharedPrefHelper {
       return null;
     }
   }
-
 }

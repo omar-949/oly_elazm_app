@@ -6,11 +6,13 @@ import 'package:oly_elazm/core/theme/app_text_style.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final Color backgroundColor;
+  final bool?hasBackButton;
 
   const CustomAppBar({
     super.key,
     required this.title,
     this.backgroundColor = const Color(0xffFFD08A),
+    this.hasBackButton=true,
   });
 
   @override
@@ -21,14 +23,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       scrolledUnderElevation: 0,
       centerTitle: true,
-      leading: IconButton(
-        onPressed: () => context.pop(),
-        icon: Icon(
-          Icons.arrow_back_ios,
-          color: Colors.black,
-          size: 18.w,
-        ),
-      ),
+      leading: hasBackButton!?const BackButton(color: Colors.black):SizedBox(),
       backgroundColor: backgroundColor,
     );
   }

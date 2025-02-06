@@ -13,4 +13,5 @@ class Routes {
   static const String settingView = '/settingView';
   static const String editProfileView = '/editProfileView';
   static const String elmohafezDetailsView = '/elmohafezDetailsView';
+  static const String azkarCountView = '/azkarCountView';
 }

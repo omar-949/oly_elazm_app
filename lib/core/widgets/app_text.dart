@@ -13,6 +13,7 @@ class AppText extends StatelessWidget {
   final int? maxLines;
   final TextOverflow? textOverflow;
   final TextDecoration? decoration;
+  final String? fontFamily;
 
 
   const AppText(
@@ -24,7 +25,9 @@ class AppText extends StatelessWidget {
       this.textColor,
       this.maxLines,
       this.textOverflow,
-      this.decoration});
+      this.decoration,
+      this.fontFamily
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +41,7 @@ class AppText extends StatelessWidget {
         textWeight: textWeight ?? FontWeight.w400,
         textSize: textSize ?? 14.sp,
         textColor: textColor ?? AppColors.textColor,
+        fontFamily: fontFamily
       ),
     );
   }

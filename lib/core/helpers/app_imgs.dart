@@ -18,6 +18,7 @@ class AppImages {
   static String get onboarding2 => pngImageName('onboarding2');
   static String get onboarding3 => pngImageName('onboarding3');
   static String get waitingImage => pngImageName('wating_image');
+  static String get azkar => pngImageName('azkar');
 
   static const String dots = 'assets/svgs/dots.svg';
   static const String group = 'assets/svgs/Group.svg';

@@ -19,7 +19,7 @@ class AppNavBar extends StatelessWidget {
     return CurvedNavigationBar(
       items: const <Widget>[
         NavIcon('assets/svgs/home.svg'),
-        NavIcon('assets/svgs/mosque.svg'),
+        // NavIcon('assets/svgs/mosque.svg'),
         NavIcon('assets/svgs/book.svg'),
         NavIcon('assets/svgs/pray.svg'),
         NavIcon('assets/svgs/settings.svg'),

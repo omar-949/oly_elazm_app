@@ -1,5 +1,6 @@
 
 
+import 'package:oly_elazm/features/home/data/models/student/assigned_task_model.dart';
 import 'package:oly_elazm/features/home/data/models/teacher/all_student_model.dart';
 
 import '../../../../core/helpers/operation_state.dart';
@@ -8,32 +9,33 @@ import '../../../../core/helpers/operation_state.dart';
 class HomeState {
   final OperationState allStudentsState;
   final AllStudentModel? allStudents;
-  final OperationState registerState;
-  final OperationState verifyCodeState ;
-  final int? verifyCode ;
+  final OperationState assignedTask;
+  final AssignedTaskModel? assignedTaskModel;
+
 
   const HomeState({
     this.allStudentsState = const OperationState(),
     this.allStudents,
-    this.registerState = const OperationState(),
-    this.verifyCodeState = const OperationState(),
-    this.verifyCode,
+    this.assignedTask = const OperationState(),
+    this.assignedTaskModel
+
+
   });
 
   /// Returns a new instance of [HomeState] with updated values.
   HomeState copyWith({
     OperationState? allStudentsState,
     AllStudentModel? allStudents,
-    OperationState? registerState,
-    OperationState? verifyCodeState,
-    int? verifyCode
+    OperationState? assignedTask,
+    AssignedTaskModel? assignedTaskModel
+
   }) {
     return HomeState(
       allStudentsState: allStudentsState ?? this.allStudentsState,
       allStudents: allStudents ?? this.allStudents,
-      registerState: registerState ?? this.registerState,
-      verifyCodeState: verifyCodeState ?? this.verifyCodeState,
-      verifyCode: verifyCode ?? this.verifyCode
+      assignedTask: assignedTask ?? this.assignedTask,
+      assignedTaskModel: assignedTaskModel ?? this.assignedTaskModel
+
     );
   }
 }
