@@ -89,14 +89,14 @@ Result<T> _handleSuccess<T>(response, Function(Response?)? successHandler,
 
 /// HANDLE API RESPONSE ERROR ///
 Result<T> _handleError<T>(Response? response, Function(dynamic)? errorHandler) {
-  log('API call failed with status code: $response', name: 'Error message');
+  log('API call failed with status code: ${response?.statusCode??"no status"}', name: 'Error message');
   errorHandler?.call('Server error: $response');
   try {
     if (response != null) {
       var e = ApiErrorModel.fromJson(response.data);
 
       if ((e.message) != null) {
-        return Result.failure(e.message!);
+        return Result.failure(e.message);
       }
     }
     return Result.failure('Server error: ${response!.statusCode}');

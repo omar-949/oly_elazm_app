@@ -10,11 +10,11 @@ class StudentSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
-          child: StudentsListHeader(),
-        ),
-        16.verticalSpace,
+        // Padding(
+        //   padding: EdgeInsets.symmetric(horizontal: 20.w),
+        //   child: StudentsListHeader(),
+        // ),
+        // 16.verticalSpace,
         StudentListView(),
       ],
     );

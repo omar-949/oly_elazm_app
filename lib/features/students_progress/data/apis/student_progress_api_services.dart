@@ -1,8 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:oly_elazm/core/networking/network/network_call.dart';
 import 'package:oly_elazm/core/networking/network/result.dart';
 import 'package:oly_elazm/features/students_progress/data/apis/student_progress_api_constants.dart';
 import 'package:oly_elazm/features/students_progress/data/models/teacher/student_details.dart';
 import 'package:oly_elazm/features/students_progress/data/repo/student_progress_repo.dart';
+
+import '../models/teacher/add_task_model.dart';
 
 class StudentProgressApiServices implements StudentProgressRepo {
   /// fetch all students
@@ -34,24 +37,29 @@ class StudentProgressApiServices implements StudentProgressRepo {
   }
 
   @override
-  Future<Result<T>> giveTask<T>(
+  Future<Result<AddTaskForStudent>> giveTask(
       {required int id,
       required String surah,
       required int from,
       required int to,
       required String time,
       required String meetingLink}) async{
+    DateTime dateTime = DateTime.parse(time);
+
+    // Format the DateTime object to remove milliseconds
+    String formattedDate = DateFormat('yyyy-MM-dd HH:mm:ss', 'en').format(dateTime);
+    // Format the DateTime object
     return await networkCall(
       method: ServerMethods.POST,
       path: StudentProgressApiConstants.giveTask(id),
       data: {
         "surah_name": surah,
-        "verses_from": from,
-        "verses_to": to,
-        "scheduled_time": time,
+        "verses_from": "$from",
+        "verses_to": "$to",
+        "scheduled_time": formattedDate,
         "meeting_link": meetingLink
       },
-      fromJson: (p0) => p0 as T,
+      fromJson: (p0) => AddTaskForStudent.fromJson(p0),
     );
 
   }

@@ -9,6 +9,8 @@ import 'package:oly_elazm/features/home/logic/home_state.dart';
 import 'package:oly_elazm/features/home/ui/componants/students_list/student_list_item.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../../../../core/theme/app_text_style.dart';
+
 
 
 class StudentListView extends StatelessWidget {
@@ -16,13 +18,16 @@ class StudentListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200.h,
-      child: BlocBuilder<HomeCubit, HomeState>(
-        builder: (context, state) {
-          return Skeletonizer(
-            enabled:state.allStudents==null,
+    return BlocBuilder<HomeCubit, HomeState>(
+      builder: (context, state) {
+        return Skeletonizer(
+          enabled:state.allStudents==null,
+          child: state.allStudents?.data?.isEmpty??true?Container(
+            child: Center(child: Text('لا يوجد طلاب',style: AppTextStyle.font20Regular(),),),
+          ):SizedBox(
+            height: 200.h,
             child: ListView.builder(
+
               scrollDirection: Axis.horizontal,
               physics: BouncingScrollPhysics(),
               padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -42,9 +47,9 @@ class StudentListView extends StatelessWidget {
                 );
               },
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:oly_elazm/core/helpers/extentions.dart';
 import 'package:oly_elazm/core/helpers/shared_prefrences.dart';
 import 'package:oly_elazm/core/routing/named_router.dart';
 import 'package:oly_elazm/core/theme/app_colors.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'quran_title.dart';
 import 'splash_image.dart';
 import 'stars_image.dart';
@@ -17,11 +18,17 @@ class SplashBody extends StatefulWidget {
 
 class _SplashBodyState extends State<SplashBody> {
   bool _isVisible = true;
-
+  Future<void> requestNotificationPermission() async {
+    PermissionStatus status = await Permission.notification.request();
+    if (!status.isGranted) {
+      await Permission.notification.request();
+    }
+  }
   @override
   void initState() {
     super.initState();
     _startFadeAndNavigate();
+    requestNotificationPermission();
   }
 
   void _startFadeAndNavigate() {

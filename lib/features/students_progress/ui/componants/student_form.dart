@@ -52,10 +52,8 @@ class _StudentFormState extends State<StudentForm> {
   Widget build(BuildContext context) {
     return BlocConsumer<StudentProgressCubit, StudentProgressState>(
       listener: (context, state) {
-        if (state.giveTaskState.isSuccess) {
-          context.read<StudentProgressCubit>().addReview(
-              comment: commentController.text,
-              rating: rate);
+        if(state.addReviewState.isSuccess) {Navigator.pop(context);
+        showToast(text: 'تم اضافة التسميع بنجاح', color: AppColors.successColor);
         }
       },
       builder: (context, state) {
@@ -281,6 +279,8 @@ class _StudentFormState extends State<StudentForm> {
                               context.read<StudentProgressCubit>().giveTask(
                                     time: newLessonController.text,
                                     meetingLink: linkController.text,
+                                desc: commentController.text,
+                                rate: rate
                                   );
                             }
                           },

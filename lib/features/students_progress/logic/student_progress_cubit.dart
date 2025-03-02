@@ -46,6 +46,8 @@ class StudentProgressCubit extends Cubit<StudentProgressState> {
       {
 
       required String time,
+      required String desc,
+      required double rate,
       required String meetingLink}) async {
     emit(state.copyWith(giveTaskState: OperationState.loading()));
     final result = await _studentProgressRepo.giveTask(
@@ -58,8 +60,12 @@ class StudentProgressCubit extends Cubit<StudentProgressState> {
     result.when(
       failure: (l) =>
           emit(state.copyWith(giveTaskState: OperationState.error())),
-      success: (r) =>
-          emit(state.copyWith(giveTaskState: OperationState.success())),
+      success: (r) {
+        emit(state.copyWith(giveTaskState: OperationState.success()));
+        addReview(comment: desc, rating: rate,
+            idAddReview: r.data!.id!
+        );
+      },
     );
   }
 final suras=List.generate(
@@ -67,12 +73,13 @@ final suras=List.generate(
   /// addReview
   Future<void> addReview(
       {required String comment,
+        required int idAddReview,
       required double rating}) async {
     emit(state.copyWith(addReviewState: OperationState.loading()));
     final result = await _studentProgressRepo.addReview(
-      id: id,
+      id:idAddReview,
       comment: comment,
-      partsNum:quran.getJuzNumber(suras.indexOf(surahName!), from!).toString(),
+      partsNum:(surahName=="الفاتحة")?"1":quran.getJuzNumber(suras.indexOf(surahName!), to!).toString(),
       rating: rating,
     );
     result.when(

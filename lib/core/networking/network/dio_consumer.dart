@@ -23,9 +23,6 @@ class DioConsumer implements BaseConsumer {
           queryParameters: queryParameters,
           data: data,
           options: Options(
-              followRedirects: true,
-              //Will Not Throw Errors
-              validateStatus: (status) => status! < 500,
               headers: {
                 'Authorization':
                     'Bearer ${SharedPrefHelper.getSecuredString(AppStrings.userTokenKey)}',
@@ -47,9 +44,6 @@ class DioConsumer implements BaseConsumer {
       return await dio.get<T>(path,
           queryParameters: queryParameters,
           options: Options(
-              followRedirects: true,
-              //Will Not Throw Errors
-              validateStatus: (status) => status! < 500,
               headers: {
                 'Authorization':
                     'Bearer ${SharedPrefHelper.getSecuredString(AppStrings.userTokenKey)}',
@@ -72,9 +66,6 @@ class DioConsumer implements BaseConsumer {
           data: data,
           queryParameters: queryParameters,
           options: Options(
-              followRedirects: true,
-              //Will Not Throw Errors
-              validateStatus: (status) => status! < 500,
               headers: {
                 'Authorization':
                     'Bearer ${SharedPrefHelper.getSecuredString(AppStrings.userTokenKey)}',
@@ -97,9 +88,6 @@ class DioConsumer implements BaseConsumer {
           data: data,
           queryParameters: queryParameters,
           options: Options(
-              followRedirects: true,
-              //Will Not Throw Errors
-              validateStatus: (status) => status! < 500,
               headers: {
                 'Authorization':
                     'Bearer ${SharedPrefHelper.getSecuredString(AppStrings.userTokenKey)}',
@@ -123,9 +111,6 @@ class DioConsumer implements BaseConsumer {
           data: data,
           queryParameters: queryParameters,
           options: Options(
-              followRedirects: true,
-              //Will Not Throw Errors
-              validateStatus: (status) => status! < 500,
               headers: {
                 'Authorization':
                     'Bearer ${SharedPrefHelper.getSecuredString(AppStrings.userTokenKey)}',

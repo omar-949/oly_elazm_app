@@ -1,13 +1,15 @@
 import 'package:oly_elazm/core/networking/network/result.dart';
 import 'package:oly_elazm/features/students_progress/data/models/teacher/student_details.dart';
 
+import '../models/teacher/add_task_model.dart';
+
 abstract class StudentProgressRepo {
   /// TEACHER
   // FETCH  STUDENTS Details
   Future<Result<StudentDetailsModel>> fetchStudentsDetails(int id);
 
   //give task
-  Future<Result<T>> giveTask<T>(
+  Future<Result<AddTaskForStudent>> giveTask(
       {required int id,
       required String surah,
       required int from,
